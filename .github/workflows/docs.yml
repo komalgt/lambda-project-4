@@ -19,24 +19,13 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: |
-          pip install mkdocs mkdocs-material
-
-      - name: Build and deploy MkDocs
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          deploy_key: ${{ secrets.DEPLOY_KEY }}
-          publish_dir: ./site
-
-       - name: Deploy MkDocs to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./site
-
-          
-        env:
-          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        run: pip install mkdocs mkdocs-material
 
       - name: Build MkDocs site
         run: mkdocs build
+
+      - name: Deploy MkDocs to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}      # This is included by default
+          publish_dir: ./site
