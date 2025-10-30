@@ -27,6 +27,14 @@ jobs:
         with:
           deploy_key: ${{ secrets.DEPLOY_KEY }}
           publish_dir: ./site
+
+       - name: Deploy MkDocs to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+
+          
         env:
           ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
 
